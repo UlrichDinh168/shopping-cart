@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const { auth } = require("../middleware/auth");
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/')
     },
@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage }).single("file")
+let upload = multer({ storage: storage }).single("file")
 
 
 //=================================
@@ -34,6 +34,7 @@ router.post("/uploadImage", auth, (req, res) => {
         if (err) {
             return res.json({ success: false, err })
         }
+        //send the info back to frontend
         return res.json({ success: true, image: res.req.file.path, fileName: res.req.file.filename })
     })
 

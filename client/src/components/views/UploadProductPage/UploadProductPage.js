@@ -6,7 +6,7 @@ import Axios from 'axios';
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const Continents = [
+const continents = [
     { key: 1, value: "Africa" },
     { key: 2, value: "Europe" },
     { key: 3, value: "Asia" },
@@ -21,7 +21,7 @@ function UploadProductPage(props) {
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
     const [PriceValue, setPriceValue] = useState(0)
-    const [ContinentValue, setContinentValue] = useState(1)
+    const [ContinentValue, setContinentValue] = useState(1) //24:44
 
     const [Images, setImages] = useState([])
 
@@ -43,11 +43,11 @@ function UploadProductPage(props) {
     }
 
     const updateImages = (newImages) => {
+        console.log(newImages)
         setImages(newImages)
     }
     const onSubmit = (event) => {
         event.preventDefault();
-
 
         if (!TitleValue || !DescriptionValue || !PriceValue ||
             !ContinentValue || !Images) {
@@ -111,7 +111,7 @@ function UploadProductPage(props) {
                 />
                 <br /><br />
                 <select onChange={onContinentsSelectChange} value={ContinentValue}>
-                    {Continents.map(item => (
+                    {continents.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
                     ))}
                 </select>
